@@ -1,0 +1,2 @@
+
+mongodb://shruti31:djDX9XsSQBeNivLp@<hostname>/?ssl=true&replicaSet=atlas-c6vady-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0

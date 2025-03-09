@@ -1,0 +1,12 @@
+.form-container {
+    border: 1px solid red;
+    padding: 10px;
+    width: "100%";
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+}
+
+.form-input {
+    width: '100%';
+}
