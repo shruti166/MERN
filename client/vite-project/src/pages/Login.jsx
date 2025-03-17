@@ -5,7 +5,7 @@ import "./auth.css";
 
 export default function Login() {
   return (
-    <div className="form-container">
+    <div >
       <Form
         layout="vertical"
         name="basic"
