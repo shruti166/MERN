@@ -1,9 +1,20 @@
 import React from "react";
 import { Form, Input, Button } from "antd";
 import { Link } from "react-router-dom";
+import { RegisterUser } from "../apiCalls/user";
 
 export default function Register() {
+
+  const submitForm = async(value) => {
+    try {
+      const res = await RegisterUser(value);
+      console.log(res)
+    } catch (err) {
+      console.log(err)
+    }
+  }
   return <div><Form
+  onFinish={submitForm}
   name="basic"
     layout="vertical"
   initialValues={{
