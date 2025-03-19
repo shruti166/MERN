@@ -9,3 +9,14 @@ export const RegisterUser = async (body) => {
     console.log(err);
   }
 };
+
+export const LoginUser = async(body) => {
+    try {
+        const response = await axiosInstance.post("http://localhost:3000/api/users/login", body);
+        return response.data
+
+    } catch(err) {
+        console.log(err);
+    }
+}
+

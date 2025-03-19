@@ -2,8 +2,18 @@ import React from "react";
 import { Form, Input, Button } from "antd";
 import { Link } from "react-router-dom";
 import "./auth.css";
+import { LoginUser } from "../apiCalls/user";
 
 export default function Login() {
+
+  const onSubmit = async(value) => {
+    try {
+      const response = await LoginUser(value);
+      console.log(response.data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
   return (
     <div >
       <Form
@@ -13,11 +23,12 @@ export default function Login() {
         initialValues={{
           remember: true,
         }}
+        onFinish={onSubmit}
         autoComplete="off"
       >
         <Form.Item
-          label="Username"
-          name="username"
+          label="Email"
+          name="email"
           rules={[
             {
               required: true,
