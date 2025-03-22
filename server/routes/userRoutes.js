@@ -34,38 +34,43 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-    try {
-      const userExists = await User.findOne({email: req.body.email});
-  
+  try {
+      const userExists = await User.findOne({ email: req.body.email });
+
       if (!userExists) {
-        res.send({
-          success: false,
-          message: "User does not exist",
-        });
-      } else{
-          const isPasswordMatched = await bcrypt.compare(userExists.password, req.body.password)
-
-          if(isPasswordMatched) {
-            const token = jwt.sign({userId: user._id }, process.env.SECRET_KEY )
-            res.send({
-                success: true,
-                message: "User Logged In Successfully",
-                token: token
-            });
-
-          } else {
-            res.send({
-                success: fasle,
-                message: "Password did not match",
-            });
-          }
-  
-          
+          return res.status(400).json({
+              success: false,
+              message: "User does not exist",
+          });
       }
-     
-    } catch (err) {
 
-    }
-  });
+      const isPasswordMatched = await bcrypt.compare(req.body.password, userExists.password);
+
+      if (isPasswordMatched) {
+          const token = jwt.sign(
+              { userId: userExists._id },
+              process.env.SECRET_KEY,
+              { expiresIn: "1h" } // Token expires in 1 hour
+          );
+
+          return res.json({
+              success: true,
+              message: "User Logged In Successfully",
+              token: token
+          });
+      } else {
+          return res.status(400).json({
+              success: false,  // Fixed spelling mistake
+              message: "Password did not match",
+          });
+      }
+  } catch (err) {
+      return res.status(500).json({
+          success: false,
+          message: "Server Error",
+          error: err.message
+      });
+  }
+});
 
 module.exports = router;
