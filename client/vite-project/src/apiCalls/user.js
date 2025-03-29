@@ -20,3 +20,13 @@ export const LoginUser = async(body) => {
     }
 }
 
+export const getCurrentUser = async() => {
+  try { 
+    const response = await axiosInstance.get("http://localhost:3000/api/users/get-valid-user");
+    return response.data
+
+  } catch(err) {
+    console.log(err);
+  }
+}
+

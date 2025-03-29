@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Form, Input, message } from "antd";
 import {Link} from 'react-router-dom'
-
 import { LoginUser } from "../apiCalls/user";
 import { useNavigate } from "react-router-dom";
 
@@ -17,7 +16,7 @@ function Login() {
       if(respone.success){
         localStorage.setItem("token", respone.token)
         message.success(respone.message)
-        navigate('/')
+        navigate('/home')
 
        }
       else{

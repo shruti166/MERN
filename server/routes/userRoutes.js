@@ -74,12 +74,14 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.get("/get-current-user", authMiddlewear,  async(req, res) => {
-  console.log(req.body.userId)
+router.get("/get-valid-user", authMiddlewear, async (req, res) => {
+  const validUser = await User.findById(req.body.userId).select("-password");
 
-  const user = await User.findById(req.body.userId);
-  console.log(user)
-
-})
+  res.send({
+    success: true,
+    message: "You are authorized to go to the protected route!",
+    data: validUser,
+  });
+});
 
 module.exports = router;
