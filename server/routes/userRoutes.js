@@ -4,6 +4,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken')
 
 const User = require("../models/userModel");
+const authMiddlewear = require("../middlewares/authMiddlewear");
 
 // Route for register
 
@@ -72,5 +73,13 @@ router.post("/login", async (req, res) => {
       });
   }
 });
+
+router.get("/get-current-user", authMiddlewear,  async(req, res) => {
+  console.log(req.body.userId)
+
+  const user = await User.findById(req.body.userId);
+  console.log(user)
+
+})
 
 module.exports = router;
