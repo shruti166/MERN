@@ -44,7 +44,7 @@ export default function ProtectedRoutes({children}) {
     <Menu
       theme="dark"
       mode="horizontal"
-      defaultSelectedKeys={['2']}
+      defaultSelectedKeys={['Home']}
       items={items}
 
       style={{ flex: 1, minWidth: 0, width:'100%', justifyContent: 'end' }}
