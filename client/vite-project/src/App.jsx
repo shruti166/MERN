@@ -17,7 +17,7 @@ function App() {
   return (
     <>
  <h1>
-  Movie App
+
   <BrowserRouter>
   {loading ? (
     <div><Spin /></div>

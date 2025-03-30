@@ -20,11 +20,11 @@ function Login() {
 
        }
       else{
-        console.log('you cannot move forward')
+        message.error(respone.message)
       }
 
     } catch (error) {
-      console.log(error)
+      message.error(error)
     }
   }
 
