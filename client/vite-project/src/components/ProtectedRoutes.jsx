@@ -15,7 +15,7 @@ export default function ProtectedRoutes({children}) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {user} = useSelector((state) => state.user)
-  const items = [{key: 'Home', label: 'Home', icon: <HomeOutlined />}, {key: user?.name, label: user?.name, icon: <UserOutlined />, children:[{label: 'Profile', icon: <ProfileOutlined/>}, {label: <Link to="/login" onClick={() => localStorage.removeItem('token')}>Log Out</Link>, icon: <LogoutOutlined/>}]} ]
+  const items = [{key: 'Home', label: 'Home', icon: <HomeOutlined />}, {key: user?.name, label: user?.name, icon: <UserOutlined />, children:[{label: <Link to = {`/${user?.role}`}>Profile</Link>, icon: <ProfileOutlined/>}, {label: <Link to="/login" onClick={() => localStorage.removeItem('token')}>Log Out</Link>, icon: <LogoutOutlined/>}]} ]
   console.log("stateUser", user)
   useEffect(() => {
     if(localStorage.getItem('token')) {

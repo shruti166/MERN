@@ -35,6 +35,7 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
+
   try {
       const userExists = await User.findOne({ email: req.body.email });
 
@@ -44,7 +45,9 @@ router.post("/login", async (req, res) => {
               message: "User does not exist",
           });
       }
-
+      console.log("Entered Password:", req.body.password);
+      console.log("Stored Hashed Password:", userExists.password);
+      
       const isPasswordMatched = await bcrypt.compare(req.body.password, userExists.password);
 
       if (isPasswordMatched) {
